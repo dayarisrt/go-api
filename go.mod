@@ -1,4 +1,4 @@
-module example.com/go-api
+module example.com/golang-api
 
 go 1.16
 
