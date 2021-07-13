@@ -8,12 +8,29 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
+var DB *gorm.DB
+var err error
+
+const DNS = "root:homestead@tcp(127.0.0.1)/godb?charset=utf8mb4"
+
 type task struct {
+	gorm.Model
 	ID      int    `json:ID`
 	Name    string `json:Name`
 	Content string `json:Content`
+}
+
+func initialMigration() {
+	DB, err = gorm.Open(mysql.Open(DNS), &gorm.Config{})
+	if err != nil {
+		fmt.Print(err.Error())
+		panic("No se pudo establecer conexión con la base de datos")
+	}
+	DB.AutoMigrate(&task{})
 }
 
 type allTasks []task
