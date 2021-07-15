@@ -44,7 +44,7 @@ var tasks = allTasks{
 }
 
 func indexRoute(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Bienvenido a la API Restt")
+	fmt.Fprintf(w, "Bienvenido a la API Rest")
 }
 
 func getTasks(w http.ResponseWriter, r *http.Request) {
